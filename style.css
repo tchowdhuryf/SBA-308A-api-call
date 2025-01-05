@@ -1,0 +1,30 @@
+body {
+  font-family: Arial, sans-serif;
+  background-color: rgb(211, 211, 252);
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  max-width: 1000px;
+  margin: 50px auto;
+  border-radius: 8px;
+  background-color: lavender;
+  padding: 20px;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+  text-align: center;
+  color: #333;
+}
+
+.dropdown {
+  margin: 20px 0;
+  text-align: center;
+}
+
+#cuisine {
+    padding: 10px;
+    font-size: 16px;
+  }
