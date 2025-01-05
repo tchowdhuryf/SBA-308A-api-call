@@ -25,6 +25,40 @@ h1 {
 }
 
 #cuisine {
-    padding: 10px;
-    font-size: 16px;
-  }
+  padding: 10px;
+  font-size: 16px;
+}
+
+.recipe-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+}
+
+.recipe-card {
+  width: 200px;
+  background-color: #f9f9f9;
+  padding: 15px;
+  border-radius: 8px;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  font-size: 14px;
+  transform: scale(1);
+  transition: transform 0.5s ease-in-out;
+}
+
+.recipe-card:hover {
+  transform: scale(1.05);
+}
+
+.recipe-card img {
+  max-width: 100%;
+  border-radius: 8px;
+}
+
+.recipe-card h3 {
+  font-size: 18px;
+  margin-top: 10px;
+  color: #555;
+}
