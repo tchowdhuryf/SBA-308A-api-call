@@ -22,6 +22,15 @@
           <option value="Mexican">Mexican</option>
           <option value="Thai">Thai</option>
         </select>
+        <input type="text" id="search" placeholder="Search for a meal" />
+        <button
+          id="search-btn"
+          onclick="searchRecipes();document.querySelector('#search').value = '';">
+          Search
+        </button>
+        <button id="random-meal-btn" onclick="getRandomRecipe()">
+          Random Recipe
+        </button>
       </div>
       <div id="recipes" class="recipe-list"></div>
     </div>
