@@ -105,3 +105,17 @@ h1 {
   background: rgb(130, 130, 207);
   cursor: pointer;
 }
+
+dialog {
+  max-width: 800px;
+  max-height: 600px;
+  margin: auto;
+  padding: 20px;
+  border-radius: 8px;
+  background-color: lavender;
+}
+
+.recipe-meal-img img {
+  width: 400px;
+  height: 300px;
+}

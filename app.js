@@ -41,8 +41,17 @@ function displayRecipeList(recipes) {
     recipeCard.appendChild(recipeTitle);
 
     recipesContainer.appendChild(recipeCard);
+
+    const mealId = recipe.idMeal;
+
+    recipeCard.addEventListener("click", () => {
+      getRecipe(mealId);
+      displayRecipeModal(recipe);
     });
+  });
 }
+
+
 
 async function searchRecipes() {
   const search = document.getElementById("search").value;
@@ -69,7 +78,7 @@ async function getRandomRecipe() {
       `https://www.themealdb.com/api/json/v1/1/random.php`
     );
     const data = await response.json();
-    displayRecipeList(data.meals);
+    displayRecipeModal(data.meals);
   } catch (error) {
     console.error("Error fetching data:", error);
     document.getElementById("recipes").innerHTML =
@@ -83,10 +92,50 @@ async function getRecipe(mealId) {
       `https://www.themealdb.com/api/json/v1/1/lookup.php?i=${mealId}`
     );
     const data = await response.json();
-    // displayRecipeModal(data.meals);
+    displayRecipeModal(data.meals);
   } catch (error) {
     console.error("Error fetching data:", error);
     document.getElementById("recipes").innerHTML =
       "<p>Sorry, something went wrong. Please try again later.</p>";
   }
+}
+
+function displayRecipeModal(meal) {
+    const dialog = document.querySelector("dialog");
+    const closeButton = document.getElementById("close");
+    dialog.showModal();
+    meal = meal[0];
+
+    const recipe = document.querySelector(".recipe-details");
+  
+    let html = `<h2 class = "recipe-title">${meal.strMeal}</h2>
+        <div class = "recipe-meal-img">
+            <img src = "${meal.strMealThumb}" alt = "">
+        </div>
+        <div class = "recipe-instruct">
+            <h3>Ingredients:</h3>
+            <ul>
+                ${getIngredientsList(meal)}
+            </ul>
+        <div class = "recipe-instruct">
+            <h3>Instructions:</h3>
+            <p>${meal.strInstructions}</p>
+        </div> 
+        `;
+
+    recipe.innerHTML = html;
+
+    closeButton.addEventListener("click", () => {
+      dialog.close();
+    }); 
+  }
+
+  function getIngredientsList(meal) {
+    let ingredients = '';
+    for (let i = 1; i <= 25; i++) {
+        if (meal[`strIngredient${i}`]) {
+            ingredients += `<li>${meal[`strIngredient${i}`]} - ${meal[`strMeasure${i}`]}</li>`;
+        }
+    }
+    return ingredients;
 }
