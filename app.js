@@ -76,3 +76,17 @@ async function getRandomRecipe() {
       "<p>Sorry, something went wrong. Please try again later.</p>";
   }
 }
+
+async function getRecipe(mealId) {
+  try {
+    const response = await fetch(
+      `https://www.themealdb.com/api/json/v1/1/lookup.php?i=${mealId}`
+    );
+    const data = await response.json();
+    // displayRecipeModal(data.meals);
+  } catch (error) {
+    console.error("Error fetching data:", error);
+    document.getElementById("recipes").innerHTML =
+      "<p>Sorry, something went wrong. Please try again later.</p>";
+  }
+}
