@@ -43,3 +43,22 @@ function displayRecipeList(recipes) {
     recipesContainer.appendChild(recipeCard);
     });
 }
+
+async function searchRecipes() {
+  const search = document.getElementById("search").value;
+  if (!search) {
+    document.getElementById("recipes").innerHTML = "";
+    return;
+  }
+  try {
+    const response = await fetch(
+      `https://www.themealdb.com/api/json/v1/1/search.php?s=${search}`
+    );
+    const data = await response.json();
+    displayRecipeList(data.meals);
+  } catch (error) {
+    console.error("Error fetching data:", error);
+    document.getElementById("recipes").innerHTML =
+      "<p>Sorry, something went wrong. Please try again later.</p>";
+  }
+}
